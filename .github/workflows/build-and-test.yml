@@ -1,5 +1,10 @@
 name: Build and test
-on: [push]
+on: 
+  workflow_call:
+    inputs:
+      upload-pages-artifacts:
+        type: boolean
+        required: false
 
 jobs:
   build-and-test:
@@ -17,4 +22,8 @@ jobs:
        with: 
         name: e2e-videos
         path: cypress/videos/
+      -if: ${{ inputs.upload-pages-artifact }}
+       uses: actions/upload-pages-artifact@v1
+       with:
+       path: build/
 
