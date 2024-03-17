@@ -5,7 +5,8 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack serve --open",
-    "test:integration"  : "jest"
+    "test:integration"  : "jest",
+    "test:e2e": "cypress open"
   },
   "devDependencies": {
     "css-loader": "^6.7.4",
