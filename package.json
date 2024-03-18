@@ -5,6 +5,7 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack serve --open",
+    "cy:run": "cypress run",
     "test:integration": "jest",
     "test:e2e": "start-test start http://localhost:8080 cy:run"
   },
