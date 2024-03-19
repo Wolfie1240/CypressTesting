@@ -28,8 +28,12 @@ test('Add values to chart builder', async function(){
 
     const user = userEvent.setup()
 
+    expect(xInputs[0].value).toContain('')
+    expect(yInputs[0].value).toContain('')
     await user.type(xInputs[0], '1')
     await user.type(yInputs[0], '2')
+    expect(xInputs[0].value).toContain('1')
+    expect(yInputs[0].value).toContain('2')
 
     const button = domTesting.getByRole(document, 'button', { name: '+' })
     await user.click(button)
@@ -37,16 +41,40 @@ test('Add values to chart builder', async function(){
     xInputs = domTesting.getAllByLabelText(document, "X")
     yInputs = domTesting.getAllByLabelText(document, "Y")
 
+    expect(xInputs[0].value).toContain('1')
+    expect(yInputs[0].value).toContain('2')
+    expect(xInputs[1].value).toContain('')
+    expect(yInputs[1].value).toContain('')
+
     await user.type(xInputs[1], '3')
     await user.type(yInputs[1], '4')
+
+    expect(xInputs[0].value).toContain('1')
+    expect(yInputs[0].value).toContain('2')
+    expect(xInputs[1].value).toContain('3')
+    expect(yInputs[1].value).toContain('4')
 
     await user.click(button)
 
     xInputs = domTesting.getAllByLabelText(document, "X")
     yInputs = domTesting.getAllByLabelText(document, "Y")
 
+    expect(xInputs[0].value).toContain('1')
+    expect(yInputs[0].value).toContain('2')
+    expect(xInputs[1].value).toContain('3')
+    expect(yInputs[1].value).toContain('4')
+    expect(xInputs[2].value).toContain('')
+    expect(yInputs[2].value).toContain('')
+
     await user.type(xInputs[2], '5')
     await user.type(yInputs[2], '6')
+
+    expect(xInputs[0].value).toContain('1')
+    expect(yInputs[0].value).toContain('2')
+    expect(xInputs[1].value).toContain('3')
+    expect(yInputs[1].value).toContain('4')
+    expect(xInputs[2].value).toContain('5')
+    expect(yInputs[2].value).toContain('6')
 
     await user.click(button)
     await user.click(button)
